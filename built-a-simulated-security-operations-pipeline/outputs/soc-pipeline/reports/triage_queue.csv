@@ -1,0 +1,7 @@
+priority,severity,severity_score,alert_id,rule_id,title,event_count,mitre_techniques,first_seen,last_seen
+P1,critical,100,301f206cb1ab,AUTH-001,Successful login after brute force pattern,6,T1110; T1078,2026-06-24T09:00:00+00:00,2026-06-24T09:06:00+00:00
+P1,critical,90,743db1740ff0,ID-001,Privileged group membership change,1,T1098,2026-06-24T09:18:00+00:00,2026-06-24T09:18:00+00:00
+P2,high,85,d4729dcbcd4f,NET-002,Large outbound data transfer,1,T1041; T1071,2026-06-24T10:05:00+00:00,2026-06-24T10:05:00+00:00
+P2,high,80,0c91e165b156,PROC-001,Encoded PowerShell download activity,1,T1059; T1105,2026-06-24T09:10:00+00:00,2026-06-24T09:10:00+00:00
+P2,high,80,798e18cfc18e,PROC-001,Certutil payload transfer activity,1,T1105,2026-06-24T09:12:00+00:00,2026-06-24T09:12:00+00:00
+P2,high,80,96dd654b7a31,NET-001,Periodic outbound beaconing pattern,5,T1071,2026-06-24T09:25:00+00:00,2026-06-24T09:45:00+00:00

